@@ -1,0 +1,6 @@
+.selected {
+   font-weight: bolder;
+}
+span.star:hover {
+   cursor: pointer;
+}
