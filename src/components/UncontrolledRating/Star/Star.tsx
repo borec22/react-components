@@ -1,5 +1,5 @@
 import classes from '../UncontrolledRating.module.css';
-import React from 'react';
+import React, {MouseEvent} from 'react';
 
 type StarType = {
    selected: boolean
@@ -7,8 +7,12 @@ type StarType = {
 }
 
 export function Star(props: StarType) {
+   const handleOnStarClick = (e: MouseEvent) => {
+      props.setRatingValue();
+   }
+
    return (
-      <span className={classes.star} onClick={props.setRatingValue}>
+      <span className={classes.star} onClick={handleOnStarClick}>
             {props.selected ? <b> star </b> : ' star '}
       </span>
    );

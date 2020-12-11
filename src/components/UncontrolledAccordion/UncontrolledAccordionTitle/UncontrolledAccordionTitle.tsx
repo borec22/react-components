@@ -3,12 +3,15 @@ import React from 'react';
 
 type AccordionTitlePropsType = {
    title: string
-   setAccordionCollapsed: () => void
+   onCollapsedChange: () => void
 }
 
 export function UncontrolledAccordionTitle(props: AccordionTitlePropsType) {
+   const onHandleTitleClick = () => {
+      props.onCollapsedChange();
+   }
 
    return <>
-      <h3 onClick={props.setAccordionCollapsed} className={classes.accordionTitle}>{props.title}</h3>
+      <h3 onClick={onHandleTitleClick} className={classes.accordionTitle}>{props.title}</h3>
    </>
 }

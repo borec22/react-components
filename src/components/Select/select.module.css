@@ -1,0 +1,36 @@
+.selectContainer {
+   display: inline-block;
+}
+.select {
+   text-align: center;
+   padding: 20px;
+   border: 1px solid darkgray;
+   border-radius: 2px;
+   color: darkgray;
+}
+.select:hover {
+   border-color: black;
+   color: black;
+   cursor: pointer;
+}
+.selectCollapsed {
+   border: 2px solid #1ea7fd;
+   color: black;
+}
+.select.selectCollapsed:hover {
+   border: 2px solid #1ea7fd;
+   cursor: default;
+}
+.options {
+   border: 1px solid black;
+   border-radius: 2px;
+}
+.option {
+   padding: 5px 20px;
+   text-align: center;
+}
+.option:hover {
+   color: white;
+   background-color: #1ea7fd;
+   cursor: default;
+}

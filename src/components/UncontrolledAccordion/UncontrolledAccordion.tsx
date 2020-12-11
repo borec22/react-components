@@ -3,16 +3,19 @@ import {UncontrolledAccordionTitle} from './UncontrolledAccordionTitle/Uncontrol
 
 type AccordionPropsType = {
    titleValue: string,
-   collapsed: boolean
-   setAccordionCollapsed: () => void
+   collapsed?: boolean
 }
 
 export function UncontrolledAccordion(props: AccordionPropsType) {
+   const [collapsed, setCollapsed] = useState(props.collapsed);
+   const handleCollapsedCallback = () => {
+      setCollapsed(!collapsed);
+   }
 
    return <div>
       <UncontrolledAccordionTitle title={props.titleValue}
-                                  setAccordionCollapsed={props.setAccordionCollapsed}/>
-      { !props.collapsed && <AccordionBody/> }
+                                  onCollapsedChange={handleCollapsedCallback}/>
+      { !collapsed && <AccordionBody/> }
    </div>
 }
 
