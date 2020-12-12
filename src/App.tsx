@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import {RatingType} from './components/ControlledRating/ControlledRating';
 import {Select} from './components/Select/Select';
+import {OnOff} from './components/OnOff/OnOff';
 
 export type ItemType = {
    title: string
@@ -45,6 +46,8 @@ export function App() {
             {value: '3', title: 'San Francisco'},
             {value: '4', title: 'London'},
          ]}/>
+         <hr/>
+         <OnOff isOn={isOn} setIsOn={setIsOn}/>
       </div>
    );
 }
