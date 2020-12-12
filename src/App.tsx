@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
-import {ControlledRating, RatingType} from './components/ControlledRating/ControlledRating';
-import {ControlledAccordion} from './components/ControlledAccordion/ControlledAccordion';
+import {RatingType} from './components/ControlledRating/ControlledRating';
 import {Select} from './components/Select/Select';
 
 export type ItemType = {
@@ -13,7 +12,7 @@ export function App() {
    const [ratingValue, setRatingValue] = useState<RatingType>(0);
    const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false);
    const [isOn, setIsOn] = useState<boolean>(false);
-   const [optionSelected, setOptionSelected] = useState<any>('Kiev');
+   const [optionSelected, setOptionSelected] = useState<any>('2');
 
    const onClick = (value: any) => {
       setOptionSelected(value);
@@ -21,22 +20,17 @@ export function App() {
 
    return (
       <div className="App">
-         <Select value={optionSelected} onClick={onClick} options={[
-            {id: 1, value: 'Minsk'},
-            {id: 2, value: 'Kiev'},
-            {id: 3, value: 'San Francisco'},
-            {id: 4, value: 'London'},
+         <select style={{marginBottom: '20px'}}>
+            <option value="1">Kiev</option>
+            <option value="2">London</option>
+            <option value="3">Paris</option>
+         </select>
+         <Select value={optionSelected} onChange={onClick} options={[
+            {value: '1', title: 'Minsk'},
+            {value: '2', title: 'Kiev'},
+            {value: '3', title: 'San Francisco'},
+            {value: '4', title: 'London'},
          ]}/>
-         {/*<ControlledAccordion titleValue='List of books'
-                              collapsed={accordionCollapsed}
-                              setAccordionCollapsed={()=> setAccordionCollapsed(!accordionCollapsed)}
-                              onItemClick={onItemClick}
-                              items={
-                                 [{value: 1, title: 'history'},
-                                 {value: 2, title: 'math'},
-                                 {value: 3, title: 'ukraine language'},
-                                 {value: 4, title: 'literature'},]
-                              }/>*/}
       </div>
    );
 }
