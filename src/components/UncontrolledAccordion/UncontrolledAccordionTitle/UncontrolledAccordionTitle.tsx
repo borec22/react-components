@@ -6,7 +6,7 @@ type AccordionTitlePropsType = {
    onCollapsedChange: () => void
 }
 
-export function UncontrolledAccordionTitle(props: AccordionTitlePropsType) {
+export const UncontrolledAccordionTitle = React.memo(function (props: AccordionTitlePropsType) {
    const onHandleTitleClick = () => {
       props.onCollapsedChange();
    }
@@ -14,4 +14,4 @@ export function UncontrolledAccordionTitle(props: AccordionTitlePropsType) {
    return <>
       <h3 onClick={onHandleTitleClick} className={classes.accordionTitle}>{props.title}</h3>
    </>
-}
+});

@@ -6,10 +6,10 @@ type StarType = {
    setRatingValue: () => void
 }
 
-export function Star(props: StarType) {
+export const Star = React.memo(function (props: StarType) {
    return (
       <span className={classes.star} onClick={props.setRatingValue}>
             {props.selected ? <b> star </b> : ' star '}
       </span>
    );
-}
+});

@@ -6,7 +6,7 @@ type PropsType = {
    value?: RatingType
 }
 
-export function UncontrolledRating(props: PropsType) {
+export const UncontrolledRating = React.memo(function (props: PropsType) {
    const [ratingValue, setRatingValue] = useState<RatingType>(props.value || 0);
 
    return (
@@ -23,5 +23,5 @@ export function UncontrolledRating(props: PropsType) {
                setRatingValue={() => setRatingValue(5)}/>
       </div>
    );
-}
+});
 

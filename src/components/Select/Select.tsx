@@ -1,9 +1,12 @@
-import React, {useEffect, useState, KeyboardEvent} from 'react';
+import React, {KeyboardEvent, useEffect, useReducer} from 'react';
 import s from './select.module.css';
+import {changeHoveredElementValueAC, reducer, StateType, toggleCollapseAC} from './reducer/reducer';
 
-type OptionType = {
+export type OptionType = {
    value: string
    title: string
+   codeCountry: 1 | 2 | 3
+   population: number
 }
 type SelectPropsType = {
    value?: any
@@ -11,32 +14,38 @@ type SelectPropsType = {
    options: OptionType[]
 }
 
-export function Select(props: SelectPropsType) {
+
+
+export const Select = React.memo(function (props: SelectPropsType) {
+   console.log('render Select')
    const {options, value, onChange, ...restProps} = props;
 
-   const [collapsed, setCollapsed] = useState<boolean>(true);
-   const [hoveredElementValue, setHoveredElementValue] = useState<any>(value);
+   const initialState: StateType = {
+      collapsed: true,
+      hoveredElementValue: value,
+   }
+
+   const [state, dispatch] = useReducer(reducer, initialState);
 
    let selectedOption = options.find(o => o.value === value);
 
    useEffect(() => {
-      setHoveredElementValue(value);
+      dispatch(changeHoveredElementValueAC(value));
    }, [value])
 
-   let hoveredElement = options.find(o => o.value === hoveredElementValue);
+   let hoveredElement = options.find(o => o.value === state.hoveredElementValue);
 
-   const onDefaultFieldClick = () => {
-      setCollapsed(!collapsed);
-   };
+   const onDefaultFieldClick = () => dispatch(toggleCollapseAC());
 
    const onOptionClick = (value: any) => {
       onChange(value);
-      setCollapsed(true);
+      dispatch(toggleCollapseAC());
    }
+
    const onKeyUpHandler = (e: KeyboardEvent<HTMLDivElement>) => {
       if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
          for (let i = 0; i < options.length; i++) {
-            if (options[i].value === hoveredElementValue) {
+            if (options[i].value === state.hoveredElementValue) {
                let nextOption = e.key === "ArrowUp" ? options[i - 1] : options[i + 1];
                if (nextOption) {
                   onChange(nextOption.value);
@@ -51,17 +60,17 @@ export function Select(props: SelectPropsType) {
       }
 
       if (e.key === 'Enter' || e.key === 'Escape') {
-         setCollapsed(true);
+         dispatch(toggleCollapseAC())
       }
    }
 
    return (
       <div className={s.selectContainer}>
-         <div onClick={onDefaultFieldClick} onKeyUp={onKeyUpHandler} tabIndex={0} className={`${s.select}  ${!collapsed ? s.selectCollapsed : ''}`}>
+         <div onClick={onDefaultFieldClick} onKeyUp={onKeyUpHandler} tabIndex={0} className={`${s.select}  ${!state.collapsed ? s.selectCollapsed : ''}`}>
             <span>{selectedOption && selectedOption.title} </span>
          </div>
 
-         {!collapsed &&
+         {!state.collapsed &&
          <div className={s.options}>
             {options.map((o, index) =>
                <div key={index}
@@ -69,11 +78,11 @@ export function Select(props: SelectPropsType) {
                     onClick={() => {
                        onOptionClick(o.value);
                     }}
-                    onMouseEnter={() => setHoveredElementValue(o.value)}
+                    onMouseEnter={() => dispatch(changeHoveredElementValueAC(o.value))}
                >
                   {o.title}
                </div>)}
          </div>}
       </div>
    );
-}
+});

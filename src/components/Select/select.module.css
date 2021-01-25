@@ -1,45 +1,62 @@
 .selectContainer {
    /*display: inline-block;*/
 }
+
 .select {
-   text-align: center;
-   padding: 6px;
    height: 15px;
+   padding: 6px;
+
+   text-align: center;
+
+   color: darkgray;
    border: 1px solid darkgray;
    border-radius: 2px;
-   color: darkgray;
 }
+
 .select:hover {
-   border-color: black;
-   color: black;
    cursor: pointer;
-}
-.selectCollapsed {
-   border: 2px solid #1ea7fd;
+
    color: black;
+   border-color: black;
 }
-.select.selectCollapsed:hover {
+
+.selectCollapsed {
+   color: black;
    border: 2px solid #1ea7fd;
-   cursor: default;
 }
+
+.select.selectCollapsed:hover {
+   cursor: default;
+
+   border: 2px solid #1ea7fd;
+}
+
 .options {
    position: absolute;
+
+   display: inline-block;
+
    border: 1px solid black;
    border-radius: 2px;
-   display: inline-block;
    background-color: white;
 }
+
 .option {
    padding: 5px 20px;
+
    text-align: center;
+
    border-top: 1px solid darkgray;
 }
+
 .option:hover {
-   color: white;
-   background-color: #1ea7fd;
    cursor: default;
-}
-.optionSelected {
-   background-color: #1ea7fd;
+
    color: white;
+   background-color: #1ea7fd;
+}
+
+.optionSelected {
+   color: white;
+   background-color: #1ea7fd;
 }

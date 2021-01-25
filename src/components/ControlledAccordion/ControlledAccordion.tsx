@@ -10,24 +10,24 @@ type AccordionPropsType = {
    onItemClick: (value: any) => void
 }
 
-export function ControlledAccordion(props: AccordionPropsType) {
+export const ControlledAccordion = React.memo(function (props: AccordionPropsType) {
 
    return <div>
       <ControlledAccordionTitle title={props.titleValue}
                                 setAccordionCollapsed={props.setAccordionCollapsed}/>
       {!props.collapsed && <AccordionBody items={props.items} onItemClick={props.onItemClick}/>}
    </div>
-}
+});
 
 type AccordionBodyPropsType = {
    items: ItemType[]
    onItemClick: (value: any) => void
 }
 
-function AccordionBody(props: AccordionBodyPropsType) {
+const AccordionBody = React.memo(function (props: AccordionBodyPropsType) {
    return (
       <ul>
          {props.items.map((i, index) => <li key={index} onClick={()=> {props.onItemClick(i.value)}}>{i.title}</li>)}
       </ul>
    );
-}
+});

@@ -6,7 +6,7 @@ type StarType = {
    setRatingValue: () => void
 }
 
-export function Star(props: StarType) {
+export const Star = React.memo(function (props: StarType) {
    const handleOnStarClick = (e: MouseEvent) => {
       props.setRatingValue();
    }
@@ -16,4 +16,4 @@ export function Star(props: StarType) {
             {props.selected ? <b> star </b> : ' star '}
       </span>
    );
-}
+});

@@ -6,8 +6,7 @@ type PropsType = {
    setIsOn: (isOn: boolean) => void
 }
 
-export function OnOff(props: PropsType) {
-
+export const OnOff = React.memo(function (props: PropsType) {
    const handleOn = () => {
       props.setIsOn(true);
    }
@@ -22,4 +21,4 @@ export function OnOff(props: PropsType) {
          <div className={`${classes.siren} ${props.isOn ? classes.green : classes.red}`}> </div>
       </div>
    );
-}
+});
